@@ -2,6 +2,7 @@ package com.company.service;
 
 import com.company.dto.ProfileDTO;
 import com.company.entity.ProfileEntity;
+import com.company.entity.RegionEntity;
 import com.company.enums.ProfileRole;
 import com.company.enums.ProfileStatus;
 import com.company.exp.BadRequestException;
@@ -15,16 +16,18 @@ import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+
 @Service
 public class ProfileService {
     @Autowired
     ProfileRepository profileRepository;
-    public ProfileDTO create(ProfileDTO dto){
+
+    public ProfileDTO create(ProfileDTO dto) {
         Optional<ProfileEntity> optional = profileRepository.findByEmail(dto.getEmail());
-        if (optional.isPresent()){
+        if (optional.isPresent()) {
             throw new InformationNotFound("Mazgi bunaqa login bor");
         }
-        if (!dto.getEmail().endsWith("@gmail.com")){
+        if (!dto.getEmail().endsWith("@gmail.com")) {
             throw new BadRequestException("Mazgi email yoki parol xato");
         }
 
@@ -67,7 +70,8 @@ public class ProfileService {
 
     public ProfileDTO getById(Integer id) {
 
-        Optional<ProfileEntity> optional = profileRepository.findById(id);
+        Optional<ProfileEntity> optional
+                = profileRepository.findById(id);
 
         if (optional.isEmpty()) {
             throw new NoPermissionException("Profile not fount");
@@ -96,10 +100,11 @@ public class ProfileService {
         profileRepository.save(entity);
     }
 
-    public void delete(Integer id){
+    public void delete(Integer id) {
         ProfileEntity entity = get(id);
         profileRepository.save(entity);
     }
+
     private void isValid(ProfileDTO dto) {
         if (dto.getName() == null || dto.getName().length() <= 2) {
             throw new BadRequestException("Name  xato.");
@@ -108,12 +113,12 @@ public class ProfileService {
             throw new BadRequestException("Surname required.");
         }
     }
+
     public ProfileEntity get(Integer id) {
         return profileRepository.findById(id).orElseThrow(() -> {
             throw new NoPermissionException("Profile Not found");
         });
     }
-
 
 
 }

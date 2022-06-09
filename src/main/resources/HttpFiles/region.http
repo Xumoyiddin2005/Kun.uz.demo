@@ -1,0 +1,27 @@
+POST http://localhost:8080/region/create
+Content-Type: application/json
+
+{
+  "key": "region/tashkent",
+  "name_uz": "Toshkent",
+  "name_ru":"Ташкент",
+  "name_en": "Tashkent"
+}
+
+###
+GET http://localhost:8080/region/listAll
+
+###
+GET http://localhost:8080/region/list/1
+###
+PUT http://localhost:8080/region/update/1
+Content-Type: application/json
+
+{
+  "key": "region/surxondaryo",
+  "name_en": "Surkhandarya",
+  "name_ru": "Cурхандарьинская",
+  "name_uz": "Surxondaryo"
+}
+###
+PUT http://localhost:8080/region/delete/1
