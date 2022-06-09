@@ -1,0 +1,26 @@
+### For profile create
+POST http://localhost:8080/profile/create
+Content-Type: application/json
+
+{
+  "name": "Eldorbek",
+  "surname": "Xolmuminiov",
+  "email": "eldorbek@gmail.com",
+  "password": "12345678"
+}
+
+###For all user
+GET http://localhost:8080/profile/listAll
+### For one user get
+GET http://localhost:8080/profile/list/1
+###For update
+PUT http://localhost:8080/profile/update/1
+Content-Type: application/json
+
+{
+  "name": "Ali",
+  "surname": "Aliyev"
+}
+
+### For Delete
+PUT http://localhost:8080/profile/delete/1
